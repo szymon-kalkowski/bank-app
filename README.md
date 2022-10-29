@@ -1,3 +1,7 @@
+# Szymon Kalkowski
+## Informatyka Praktyczna gr.2 
+## 278823
+
 # bank-app
 
 | Termin oddania | Punkty |
