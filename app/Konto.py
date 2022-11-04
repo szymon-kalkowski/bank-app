@@ -50,3 +50,14 @@ class Konto:
         if self.rok_urodzenia != "Niepoprawny pesel!":
             return self.rok_urodzenia() > 1960
         return "Niepoprawny pesel!"
+
+    def zaksieguj_przelew_wychodzacy(self, wartosc):
+        if wartosc <= self.saldo:
+            self.saldo -= wartosc
+
+    def zaksieguj_przelew_przychodzacy(self, wartosc):
+        self.saldo += wartosc
+    
+    def zaksieguj_przelew_ekspresowy(self, wartosc):
+        if wartosc <= self.saldo:
+            self.saldo -= wartosc + 1
