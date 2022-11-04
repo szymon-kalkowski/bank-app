@@ -1,6 +1,8 @@
 from .Konto import Konto
 
 class KontoFirmowe(Konto):
+    ekspresowy_cena = 5
+
     def __init__(self, nazwa, nip):
         self.nazwa = nazwa
         self.nip = self.walidacja_nip(nip)
@@ -11,7 +13,3 @@ class KontoFirmowe(Konto):
             return nip
         else:
             return "Niepoprawny NIP!"
-
-    def zaksieguj_przelew_ekspresowy(self, wartosc):
-        if wartosc <= self.saldo:
-            self.saldo -= wartosc + 5

@@ -1,4 +1,6 @@
 class Konto:
+    ekspresowy_cena = 1
+
     def __init__(self, imie, nazwisko, pesel, kod = None):
         self.imie = imie
         self.nazwisko = nazwisko
@@ -47,7 +49,7 @@ class Konto:
         return "Niepoprawny pesel!"
 
     def urodzony_po_1960(self):
-        if self.rok_urodzenia != "Niepoprawny pesel!":
+        if isinstance(self.rok_urodzenia(), int):
             return self.rok_urodzenia() > 1960
         return "Niepoprawny pesel!"
 
@@ -60,4 +62,4 @@ class Konto:
     
     def zaksieguj_przelew_ekspresowy(self, wartosc):
         if wartosc <= self.saldo:
-            self.saldo -= wartosc + 1
+            self.saldo -= wartosc + self.ekspresowy_cena
