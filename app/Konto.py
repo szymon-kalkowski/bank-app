@@ -7,6 +7,7 @@ class Konto:
         self.pesel = self.walidacja_pesel(pesel)
         self.kod = kod
         self.saldo = self.walidacja_kodu_i_wieku()
+        self.historia = []
         
     def walidacja_pesel(self, pesel):
         if len(pesel) == 11: 
@@ -56,10 +57,14 @@ class Konto:
     def zaksieguj_przelew_wychodzacy(self, wartosc):
         if wartosc <= self.saldo:
             self.saldo -= wartosc
+            self.historia.append(-wartosc)
 
     def zaksieguj_przelew_przychodzacy(self, wartosc):
         self.saldo += wartosc
+        self.historia.append(wartosc)
     
     def zaksieguj_przelew_ekspresowy(self, wartosc):
         if wartosc <= self.saldo:
             self.saldo -= wartosc + self.ekspresowy_cena
+            self.historia.append(-wartosc)
+            self.historia.append(-self.ekspresowy_cena)
