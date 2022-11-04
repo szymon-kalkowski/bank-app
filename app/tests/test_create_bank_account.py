@@ -40,3 +40,24 @@ class TestCreateBankAccount(unittest.TestCase):
         self.assertEqual(konto_z_kodem_dla_starych.rok_urodzenia(), 1892, "Niepoprawny rok urodzenia!")
         self.assertEqual(konto_z_kodem_dla_starych.urodzony_po_1960(), False, "Ten użytkownik urodził się przed 1960!")
         self.assertEqual(konto_z_kodem_dla_starych.saldo, 0, "Saldo powinno wynosić 0!")
+
+    def test_niepoprawny_pesel(self):
+        konto_niepoprwany_pesel = Konto("Jan", "Kowalski", "12345")
+        self.assertEqual(konto_niepoprwany_pesel.rok_urodzenia(), "Niepoprawny pesel!", "Niepoprawny pesel został zapisany!")
+        self.assertEqual(konto_niepoprwany_pesel.urodzony_po_1960(), "Niepoprawny pesel!", "Zły wynik dla niepoprawnego peselu!") 
+
+    def test_rok_urodzenia(self):
+        konto_1802 = Konto("Anon", "Anonski", "02820604718")
+        self.assertEqual(konto_1802.rok_urodzenia(), 1802, "Niepoprawny rok urodzenia!")
+        konto_1902 = Konto("Anon", "Anonski", "02020604718")
+        self.assertEqual(konto_1902.rok_urodzenia(), 1902, "Niepoprawny rok urodzenia!")
+        konto_2102 = Konto("Anon", "Anonski", "02420604718")
+        self.assertEqual(konto_2102.rok_urodzenia(), 2102, "Niepoprawny rok urodzenia!")
+        konto_2202 = Konto("Anon", "Anonski", "02620604718")
+        self.assertEqual(konto_2202.rok_urodzenia(), 2202, "Niepoprawny rok urodzenia!")
+        konto_1912 = Konto("Anon", "Anonski", "12020604718")
+        self.assertEqual(konto_1912.rok_urodzenia(), 1912, "Niepoprawny rok urodzenia!")
+        konto_2112 = Konto("Anon", "Anonski", "12420604718")
+        self.assertEqual(konto_2112.rok_urodzenia(), 2112, "Niepoprawny rok urodzenia!")
+        konto_2212 = Konto("Anon", "Anonski", "12620604718")
+        self.assertEqual(konto_2212.rok_urodzenia(), 2212, "Niepoprawny rok urodzenia!")
