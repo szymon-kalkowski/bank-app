@@ -7,6 +7,7 @@ class KontoFirmowe(Konto):
         self.nazwa = nazwa
         self.nip = self.walidacja_nip(nip)
         self.saldo = 0
+        self.historia = []
 
     def walidacja_nip(self, nip):
         if len(nip) == 10: 
