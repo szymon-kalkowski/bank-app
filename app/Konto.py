@@ -72,7 +72,7 @@ class Konto:
     def zaciagnij_kredyt(self, wartosc):
         if len(self.historia) < 5:
             return False
-        if self.historia[-3] > 0 and self.historia[-2] > 0 and self.historia[-1] > 0 and sum(self.historia[-5:] > wartosc):
+        if self.historia[-3] > 0 and self.historia[-2] > 0 and self.historia[-1] > 0 and sum(self.historia[-5:]) > wartosc:
             self.saldo += wartosc
             return True
         return False
