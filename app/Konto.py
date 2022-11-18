@@ -68,3 +68,11 @@ class Konto:
             self.saldo -= wartosc + self.ekspresowy_cena
             self.historia.append(-wartosc)
             self.historia.append(-self.ekspresowy_cena)
+
+    def zaciagnij_kredyt(self, wartosc):
+        if len(self.historia) < 5:
+            return False
+        if self.historia[-3] > 0 and self.historia[-2] > 0 and self.historia[-1] > 0 and sum(self.historia[-5:] > wartosc):
+            self.saldo += wartosc
+            return True
+        return False
