@@ -17,12 +17,6 @@ class KontoFirmowe(Konto):
 
     def spelnia_warunki_kredytu(self, wartosc):
         if (wartosc*2 < self.saldo 
-        and 1775 in self.historia):
+        and -1775 in self.historia):
             return True
         return False 
-
-    def zaciagnij_kredyt(self, wartosc):
-        if self.spelnia_warunki_kredytu(wartosc):
-            self.saldo += wartosc
-            return True
-        return False
