@@ -71,13 +71,12 @@ class Konto:
 
     def spelnia_warunki_kredytu(self, wartosc):
         if (all(i > 0 for i in self.historia[-3:]) 
-        and sum(self.historia[-5:]) > wartosc):
+        and sum(self.historia[-5:]) > wartosc
+        and len(self.historia) >= 5):
             return True
         return False 
 
     def zaciagnij_kredyt(self, wartosc):
-        if len(self.historia) < 5:
-            return False
         if self.spelnia_warunki_kredytu(wartosc):
             self.saldo += wartosc
             return True
