@@ -20,5 +20,5 @@ class TestKredytFirmowy(unittest.TestCase):
         self.konto_firmowe.saldo = saldo
         self.konto_firmowe.historia = historia
         czy_przyznany = self.konto_firmowe.zaciagnij_kredyt(kwota)
-        self.assertEqual(czy_przyznany, oczekiwany_wynik)
+        self.assertEqual(czy_przyznany, oczekiwany_wynik, "Kredyt nie został przyznany poprawnie!")
         self.assertEqual(self.konto_firmowe.saldo, oczekiwane_saldo, "Kredyt nie został przyznany poprawnie!")
