@@ -23,6 +23,16 @@ class TestRejestr(unittest.TestCase):
         RejestrKont.dodaj_konto(konto)
         self.assertEqual(RejestrKont.ile_kont(), 4, "Nieprawidłowa ilość kont.")
 
+    def test_3_wyszukiwanie_konta_ktore_istnieje(self):
+        konto = Konto(self.imie, self.nazwisko, "22222222222")
+        RejestrKont.dodaj_konto(konto)
+        wynik = RejestrKont.wyszukaj_konto_z_peselem("22222222222")
+        self.assertEqual(wynik, konto)
+
+    def test_4_wyszukiwanie_konta_ktore_nie_istnieje(self):
+        wynik = RejestrKont.wyszukaj_konto_z_peselem("12345678901")
+        self.assertEqual(wynik, None)
+
     @classmethod
     def tearDownClass(cls):
         RejestrKont.lista = []

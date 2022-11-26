@@ -81,3 +81,4 @@ class Konto:
             self.saldo += wartosc
             return True
         return False
+        

@@ -14,7 +14,8 @@ class TestKredyt(unittest.TestCase):
         ([-100, 100, 100, 100, 600], 500, True, 500),
         ([100, 100, 300, 250, -100, 300], 200, False, 0),
         ([100, -1000, -2000, 200, 500, 300], 300, False, 0),
-        ([100, 300, 400], 200, False, 0)
+        ([100, 300, 400], 200, False, 0),
+        ([100, 100, 200, -100, -50, -60], 150, False, 0)
     ])
 
     def testKredyt(self, historia, kwota, oczekiwany_wynik, oczekiwane_saldo):
