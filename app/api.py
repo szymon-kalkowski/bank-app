@@ -9,8 +9,11 @@ def stworz_konto():
     dane = request.get_json()
     print(f"Request o stworzenie konta z danymi: {dane}")
     konto = Konto(dane["imie"], dane["nazwisko"], dane["pesel"])
-    RejestrKont.dodaj_konto(konto)
-    return jsonify("Konto stworzone"), 201
+    dodane = RejestrKont.dodaj_konto(konto)
+    if dodane == None:
+        return jsonify("Konto o podanym peselu już istnieje"), 400
+    else:
+        return jsonify("Konto stworzone"), 201
 
 @app.route("/konta/ile_kont", methods=['GET'])
 def ile_kont():

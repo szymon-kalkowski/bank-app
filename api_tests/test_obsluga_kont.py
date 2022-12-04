@@ -13,12 +13,6 @@ class TestObslugaKont(unittest.TestCase):
         'saldo': 30
     }
 
-    #odpalenie flaska
-    #export FLASK_APP=app/api.py
-    #python3 -m flask run
-    #odpalenie testu
-    #python3 -m unittest api_test/test_obsluga_kont.py
-
     url = 'http://localhost:5000'
 
     def test_1_tworzenie_kont_poprawne(self):
@@ -50,5 +44,11 @@ class TestObslugaKont(unittest.TestCase):
         self.assertEqual(resp_del.status_code, 200)
         ile_kont_po = int(requests.get(self.url + f"/konta/ile_kont").json())
         self.assertEqual(ile_kont_po + 1, ile_kont)
+
+    def test_5_dodanie_konta_ktore_istnieje(self):
+        create_resp = requests.post(self.url + '/konta/stworz_konto', json=self.body)
+        self.assertEqual(create_resp.status_code, 201)
+        create_resp = requests.post(self.url + '/konta/stworz_konto', json=self.body)
+        self.assertEqual(create_resp.status_code, 400)
 
         
