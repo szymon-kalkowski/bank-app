@@ -3,7 +3,11 @@ class RejestrKont():
 
     @classmethod
     def dodaj_konto(cls, konto):
+        for i in cls.lista:
+            if i.pesel == konto.pesel:
+                return None
         cls.lista.append(konto)
+        return konto
 
     @classmethod
     def ile_kont(cls):
@@ -28,5 +32,8 @@ class RejestrKont():
 
     @classmethod
     def usun_konto_z_peselem(cls, pesel):
-        if cls.wyszukaj_konto_z_peselem(pesel) != None:
-            cls.lista.remove(cls.wyszukaj_konto_z_peselem(pesel))
+        konto = cls.wyszukaj_konto_z_peselem(pesel)
+        if konto != None:
+            cls.lista.remove(konto)
+        return konto
+            
