@@ -1,4 +1,5 @@
 import unittest
+from unittest import mock
 
 from ..Konto import Konto
 from ..KontoFirmowe import KontoFirmowe
@@ -23,20 +24,23 @@ class TestKsiegowaniaPrzelewowEkspresowychKonta(unittest.TestCase):
         self.assertEqual(konto3.saldo, 500, "Pieniądze zostały pobrane pomimo niewystaczających środków!")
 
 class TestKsiegowaniaPrzelewowEkspresowychKontaFirmowego(unittest.TestCase):
-    def test_przelew_ekspresowy_konta_firmowego(self):
-        konto_firmowe = KontoFirmowe("Foxtry", "0222060471")
+    @mock.patch.object(KontoFirmowe, 'request_do_api', return_value=True)
+    def test_przelew_ekspresowy_konta_firmowego(self, mock):
+        konto_firmowe = KontoFirmowe("Foxtry", "5831014898")
         konto_firmowe.saldo = 500
         konto_firmowe.zaksieguj_przelew_ekspresowy(200)
         self.assertEqual(konto_firmowe.saldo, 500-200-5, "Pieniądze nie zostały pobrane poprawnie!")
 
-    def test_przelew_ekspresowy_konta_firmowego_ponizej_zera(self):
-        konto_firmowe2 = KontoFirmowe("Tesla", "1234567893")
+    @mock.patch.object(KontoFirmowe, 'request_do_api', return_value=True)
+    def test_przelew_ekspresowy_konta_firmowego_ponizej_zera(self, mock):
+        konto_firmowe2 = KontoFirmowe("Tesla", "5831014898")
         konto_firmowe2.saldo = 6000
         konto_firmowe2.zaksieguj_przelew_ekspresowy(6000)
         self.assertEqual(konto_firmowe2.saldo, 6000-6000-5, "Pieniądze nie zostały pobrane poprawnie!")
 
-    def test_przelew_ekspresowy_konta_firmowego_niewystarczajace_srodki(self):
-        konto_firmowe3 = KontoFirmowe("SpaceX", "1234567896")
+    @mock.patch.object(KontoFirmowe, 'request_do_api', return_value=True)
+    def test_przelew_ekspresowy_konta_firmowego_niewystarczajace_srodki(self, mock):
+        konto_firmowe3 = KontoFirmowe("SpaceX", "5831014898")
         konto_firmowe3.saldo = 2500
         konto_firmowe3.zaksieguj_przelew_ekspresowy(2550)
         self.assertEqual(konto_firmowe3.saldo, 2500, "Pieniądze zostały pobrane pomimo niewystaczających środków!")

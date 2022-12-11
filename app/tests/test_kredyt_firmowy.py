@@ -1,12 +1,15 @@
 import unittest
+from unittest import mock
+
 from ..KontoFirmowe import KontoFirmowe
 from parameterized import parameterized
 
 class TestKredytFirmowy(unittest.TestCase):
     nazwa = "Foxtry"
-    nip = "1234567890"
+    nip = "5831014898"
 
-    def setUp(self):
+    @mock.patch.object(KontoFirmowe, 'request_do_api', return_value=True)
+    def setUp(self, mock):
         self.konto_firmowe = KontoFirmowe(self.nazwa, self.nip)
 
     @parameterized.expand([
