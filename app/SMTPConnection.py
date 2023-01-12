@@ -1,4 +1,4 @@
-class SMTPConnection:
+class SMTPConnection: # pragma: no cover
 
     def wyslij(temat, tresc, adresat):
         #implementacja ktorej jeszcze nie mamy
