@@ -11,6 +11,7 @@ class KontoFirmowe(Konto): # pragma: no cover
         self.nip = self.walidacja_nip(nip)
         self.saldo = 0
         self.historia = []
+        self.wiadomosc = "Historia konta Twojej firmy to: "
 
     def walidacja_nip(self, nip):
         if len(nip) == 10: 

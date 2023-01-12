@@ -1,3 +1,6 @@
+from datetime import date
+from app.SMTPConnection import SMTPConnection
+
 class Konto:
     ekspresowy_cena = 1
 
@@ -8,6 +11,7 @@ class Konto:
         self.kod = kod
         self.saldo = self.walidacja_kodu_i_wieku()
         self.historia = []
+        self.wiadomosc = "Twoja historia konta to: "
         
     def walidacja_pesel(self, pesel):
         if len(pesel) == 11: 
@@ -79,6 +83,14 @@ class Konto:
     def zaciagnij_kredyt(self, wartosc):
         if self.spelnia_warunki_kredytu(wartosc):
             self.saldo += wartosc
+            return True
+        return False
+
+    def wyslij_historie_na_maila(self, adresat, smtp):
+        data = date.today().strftime('%Y-%m-%d')
+        temat = f"Wyciąg z dnia {data}"
+        tresc = self.wiadomosc + str(self.historia)
+        if smtp.wyslij(temat, tresc, adresat):
             return True
         return False
         
