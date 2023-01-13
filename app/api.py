@@ -17,6 +17,7 @@ def stworz_konto():
 
 @app.route("/konta/ile_kont", methods=['GET'])
 def ile_kont():
+    print(RejestrKont.ile_kont())
     return jsonify(RejestrKont.ile_kont()), 200
 
 @app.route("/konta/konto/<pesel>", methods=['GET'])
@@ -45,3 +46,9 @@ def usun_konto_z_peselem(pesel):
     print(f"Request o usunięcie konta o peselu {pesel}") 
     RejestrKont.usun_konto_z_peselem(pesel)
     return jsonify("Usunięcie zakończone pomyślnie"), 200
+
+@app.route("/konta/usun", methods=['DELETE'])
+def usun_wszystkie_konta():
+    print(f"Request o usunięcie wszystkich kont")
+    RejestrKont.usun_wszystkie_konta()
+    return jsonify("Usunięto wszystkie konta"), 200
