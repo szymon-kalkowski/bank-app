@@ -36,4 +36,9 @@ class RejestrKont():
         if konto != None:
             cls.lista.remove(konto)
         return konto
+
+    @classmethod
+    def usun_wszystkie_konta(cls):
+        cls.lista = []
+        return cls.lista
             

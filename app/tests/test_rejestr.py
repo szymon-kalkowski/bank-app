@@ -66,6 +66,16 @@ class TestRejestr(unittest.TestCase):
         self.assertEqual(usuniete_konto, None)
         self.assertEqual(ile_kont_po, ile_kont)
 
+    def test_8_usuwanie_wszystkich_kont(self):
+        konto1 = Konto(self.imie, self.nazwisko, "38501573581")
+        konto2 = Konto(self.imie, self.nazwisko, "38501673281")
+        RejestrKont.dodaj_konto(konto1)
+        RejestrKont.dodaj_konto(konto2)
+        lista = RejestrKont.usun_wszystkie_konta()
+        ile_kont = RejestrKont.ile_kont()
+        self.assertEqual(len(lista), 0)
+        self.assertEqual(ile_kont, 0)
+
     @classmethod
     def tearDownClass(cls):
         RejestrKont.lista = []
